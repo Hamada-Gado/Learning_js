@@ -10,31 +10,35 @@ import { useGeographic } from "ol/proj";
 
 export class Map {
     constructor(coords) {
-        this.coordinates = coords;
-        this.render();
+        this.coords = coords;
+        this.render(coords);
     }
 
-    render() {
+    render(coordinates) {
+        this.coords = coordinates;
         document.getElementById("map").innerHTML = "";
         useGeographic();
         new OlMap({
             target: "map",
             layers: [
                 new TileLayer({
-                    source: new OSM()
+                    source: new OSM(),
                 }),
                 new VectorLayer({
                     source: new VectorSource({
                         features: [
                             new Feature({
-                                geometry: new Point(this.coordinates),
+                                geometry: new Point([
+                                    this.coords.longitude,
+                                    this.coords.latitude,
+                                ]),
                             }),
                         ],
                     }),
                 }),
             ],
             view: new View({
-                center: this.coordinates,
+                center: [this.coords.longitude, this.coords.latitude],
                 zoom: 8,
             }),
         });
