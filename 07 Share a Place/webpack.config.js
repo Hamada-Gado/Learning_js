@@ -10,7 +10,7 @@ module.exports = {
   output: {
     filename: "[name].js",
     path: path.resolve(__dirname, "dist", "assets", "scripts"),
-    publicPath: "assets/scripts/",
+    publicPath: "/assets/scripts",
   },
   devtool: "eval-cheap-module-source-map",
   devServer: {
