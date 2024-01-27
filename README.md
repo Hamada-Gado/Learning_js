@@ -32,6 +32,10 @@ This project introduces HTTP requests in JavaScript. It's a great introduction t
 
 This project is an improved version of the Project Planner with a more structured codebase. It introduces concepts like modules and more advanced project organization.
 
+### 7. Share a Place
+
+This project is a location sharing application. It introduces concepts like geolocation, working with OpenLayers & nominatim APIs, and advanced project setup with Webpack. The project is structured using modern JavaScript practices, including the use of `package.json` for managing dependencies and `webpack.config.js` for configuring the build process.
+
 ## Future Projects
 
 The journey of learning JavaScript is ongoing and more projects will be added to this repository. Each new project will introduce new concepts and techniques, providing a comprehensive learning experience.
