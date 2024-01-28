@@ -32,9 +32,12 @@ This project introduces HTTP requests in JavaScript. It's a great introduction t
 
 This project is an improved version of the Project Planner with a more structured codebase. It introduces concepts like modules and more advanced project organization.
 
-### 7. Share a Place
+### 7. Share a Place/ 8. Node.js Basics
+This is a two-part project:
 
-This project is a location sharing application. It introduces concepts like geolocation, working with OpenLayers & nominatim APIs, and advanced project setup with Webpack. The project is structured using modern JavaScript practices, including the use of `package.json` for managing dependencies and `webpack.config.js` for configuring the build process.
+* The first project is a location sharing application. It introduces concepts like geolocation, working with OpenLayers & nominatim APIs, and advanced project setup with Webpack. The project is structured using modern JavaScript practices, including the use of `package.json` for managing dependencies and `webpack.config.js` for configuring the build process.
+
+* The second project introduces the basics of Node.js. It's a simple web server that serves static files and handles basic routing. The project is structured using Express.js, a popular Node.js framework, and includes a `package.json` file for managing dependencies. It's a great introduction to server-side JavaScript.
 
 ## Future Projects
 
