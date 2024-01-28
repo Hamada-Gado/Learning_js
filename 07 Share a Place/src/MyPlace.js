@@ -9,10 +9,18 @@ class LoadedPlace {
 
 const url = new URL(location.href);
 const queryParams = url.searchParams;
-const coords = {
-    longitude: +queryParams.get("lng"),
-    latitude: +queryParams.get("lat"),
-}
-const address = queryParams.get("address");
-
-new LoadedPlace(coords, address);
+const locId = queryParams.get("locationId");
+fetch("http://localhost:3000/location/" + locId)
+    .then((response) => {
+        if (response.status === 404) {
+            throw new Error("Could not find location!");
+        }
+        return response.json();
+    })
+    .then((data) => {
+        new LoadedPlace(data.coordinates, data.address);
+    })
+    .catch((error) => {
+        alert("Could not find location!");
+        console.log(error);
+    });

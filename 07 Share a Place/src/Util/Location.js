@@ -36,5 +36,5 @@ export async function getCoordsFromAddress(address) {
         );
     }
 
-    return { longitude: data[0].lon, latitude: data[0].lat };
+    return { longitude: +data[0].lon, latitude: +data[0].lat };
 }

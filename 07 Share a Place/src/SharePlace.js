@@ -37,24 +37,39 @@ class PlaceFinder {
             });
     }
 
-    selectPlace(coordinates, address) {
+    async selectPlace(coordinates, address) {
         if (this.map) {
             this.map.render(coordinates);
         } else {
             this.map = new Map(coordinates);
         }
 
-        this.shareBtn.disabled = false;
-        const sharedLinkInputElement = document.getElementById("share-link");
+        await fetch("http://localhost:3000/add-location", {
+            method: "POST",
+            body: JSON.stringify({
+                address: address,
+                latitude: coordinates.latitude,
+                longitude: coordinates.longitude,
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                const locationId = data.locId;
 
-        sharedLinkInputElement.value = `${
-            location.origin
-        }/my-place?address=${encodeURI(address)}&lat=${
-            coordinates.latitude
-        }&lng=${coordinates.longitude}`;
+                this.shareBtn.disabled = false;
+                const sharedLinkInputElement =
+                    document.getElementById("share-link");
+
+                sharedLinkInputElement.value = `${location.origin}/my-place?locationId=${locationId}`;
+            });
     }
 
-    locateUserHandler() {
+    async locateUserHandler() {
         if (!navigator.geolocation) {
             alert(
                 "Location feature is not available in your browser - please use a more modern browser or manually enter an address."
@@ -75,7 +90,7 @@ class PlaceFinder {
                 };
                 try {
                     const address = await getAddressFromCoords(coordinates);
-                    this.selectPlace(coordinates, address);
+                    await this.selectPlace(coordinates, address);
                 } catch (error) {
                     alert("Could not fetch address. Please try again!");
                     console.log(error);
@@ -108,7 +123,7 @@ class PlaceFinder {
 
         try {
             const coordinates = await getCoordsFromAddress(address);
-            this.selectPlace(coordinates, address);
+            await this.selectPlace(coordinates, address);
         } catch (error) {
             alert(error.message);
         }
@@ -117,4 +132,4 @@ class PlaceFinder {
     }
 }
 
-window.placeFinder = new PlaceFinder();
+new PlaceFinder();
